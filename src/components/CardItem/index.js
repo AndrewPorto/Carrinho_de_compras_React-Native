@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export default function CardItem({ data, addAmount, removeAmount}) {
     const [amount, setAmount] = useState(data?.amount)
@@ -23,20 +23,28 @@ export default function CardItem({ data, addAmount, removeAmount}) {
  return (
    <View style={styles.container}>
         <View>
-            <Text style={styles.title}>{data.name}</Text>
-            <Text style={styles.price}>R$ {data.price}</Text>
+            <View>
+                <Text style={styles.title}>{data.name}</Text>
+                <Text style={styles.price}>R$ {data.price}</Text>
+            </View>
+
+            <View style={styles.amountContainer}>
+                <TouchableOpacity style={styles.buttonAdd} onPress={handleDecrease}>
+                    <Text>-</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.amount}>{amount}</Text>
+
+                <TouchableOpacity style={styles.buttonAdd} onPress={handleIncrease}>
+                    <Text>+</Text>
+                </TouchableOpacity>
+            </View>
         </View>
-
-        <View style={styles.amountContainer}>
-            <TouchableOpacity style={styles.buttonAdd} onPress={handleDecrease}>
-                <Text>-</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.amount}>{amount}</Text>
-
-            <TouchableOpacity style={styles.buttonAdd} onPress={handleIncrease}>
-                <Text>+</Text>
-            </TouchableOpacity>
+        <View>
+            <Image
+                style={styles.img}
+                source={{uri: data.img}}
+            />
         </View>
    </View>
   );
@@ -49,6 +57,9 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         marginBottom: 14,
         padding: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+        
 
     },
     title:{
@@ -75,5 +86,9 @@ const styles = StyleSheet.create({
     amount: {
         marginLeft: 14,
         marginRight: 14
+    },
+    img: {
+        width: 100,
+        height: 100
     }
 })

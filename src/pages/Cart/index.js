@@ -7,7 +7,7 @@ export default function Cart(){
   const { cart, addItemCart, removeItemCart, total } = useContext(CartContext)
 
   return(
-    <View style={stlyes.container}>
+    <View style={styles.container}>
     
       <FlatList 
         data={cart}
@@ -21,14 +21,15 @@ export default function Cart(){
             removeAmount = { () => removeItemCart(item) }
           />
         )}
-        ListFooterComponent={() => total > 0 && (<Text style={stlyes.total}>Total: R$ {total}</Text>)}
+        ListFooterComponent={() => total > 0 && (<Text style={styles.total}>Total: R$ {total}</Text>)}
+       
       />
-
+    
     </View>
   )
 }
 
-const stlyes = StyleSheet.create({
+const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor: '#FAFAFA',

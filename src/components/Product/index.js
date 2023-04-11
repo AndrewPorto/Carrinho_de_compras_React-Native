@@ -1,9 +1,16 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export default function Product({ data, addToCart}) {
  return (
    <View style={styles.container}>
     <View>
+        <Image
+          style={styles.img}
+          source={{uri:data.img}}
+        />
+      </View>
+    <View>
+      
       <Text style={styles.title}>{data.name}</Text>
       <Text style={styles.price}>R$ {data.price}</Text>
     </View>
@@ -26,7 +33,8 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    height: 100
   },
   title:{
     fontWeight: 'bold'
@@ -38,5 +46,12 @@ const styles = StyleSheet.create({
     paddingTop: 6,
     paddingBottom: 6,
     borderRadius: 2,
+  },
+  img:{
+    width: 100,
+    height: 100,
+    marginLeft: -10,
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5
   }
 })
